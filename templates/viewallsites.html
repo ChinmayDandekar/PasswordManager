@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View all passwords</title>
+</head>
+<body>
+    hello world
+    {% for pas in passs %}
+    <div>
+        <ul>
+            <li><h3>Site Name: {{pas.site_name}}</h3></li>
+            <li><h4>Site Url: {{pas.site_url}}</h4></li>
+            <li>Email: {{pas.email}}</li>
+            <li>Phone Number: {{pas.phoneNo}}</li>
+            <li>Username: {{pas.username}}</li>
+            <li>Password: {{pas.password}}</li>
+        </ul>
+    </div>
+
+    {% endfor %}
+
+    <div>
+        {%for message in messages%}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+
+    
+</body>
+</html>

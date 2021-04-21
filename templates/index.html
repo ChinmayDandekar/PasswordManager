@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+
+<body>
+    <h3>Password<strong>Manager<strong></h3>
+        {% if user.is_authenticated %}
+    user is authenticated
+    <a href="accounts/logout"><h3>LogOut</h3></a><br>
+
+    <a href="addsite"> Add New Site</a><br>
+    <a href="addDocument">Add New Document</a><br>
+    <a href="viewallsites"> view all sites</a><br>
+
+    <a href="#"> Generate Random Password</a>
+<div class=""></div>
+       
+    {% else %}
+    <a href="accounts/register"><h3>Register</h3></a>
+        <a href="accounts/login"><h3>Login</h3></a>
+    <p>New Global Password Security Report: See how businesses around the world are keeping up with password security
+        and authentication needs </p>
+
+    <h2>Effortless security from anywhere.</h2>
+
+    <h4>life is happening online. Work. Play. Family and friends.</h4>
+    <h4>Password Manager puts your digital life at your fingertips, simply and securely.</h4>
+
+
+
+    {% endif %}
+</body>
+
+</html>
