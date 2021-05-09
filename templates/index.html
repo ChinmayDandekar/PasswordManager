@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,36 +8,90 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'PM/css/style.css'%}">
     <title>Password Manager</title>
+
+    <script type='text/javascript'>
+        if (performance.navigation.type == 2) {
+            location.reload(true);
+        }
+    </script>
 </head>
 
 <body>
-    <h3>Password<strong>Manager<strong></h3>
-        {% if user.is_authenticated %}
-    user is authenticated
-    <a href="accounts/logout"><h3>LogOut</h3></a><br>
+    <div class='heading'>
+        <div class='mainbar'>
+            <a href="#">
+                <h3>Password<strong id='str'>Manager<strong></h3>
+            </a>
+        </div>
+        <div class='sidebar'>
+            {% if user.is_authenticated %}
+            <ul>
+                <li><a href="#">
+                        <h3>Welcome, {{user.username}}</h3>
+                    </a></li>
+                <li><a href="accounts/logout">
+                        <h3>LogOut</h3>
+                    </a></li>
+            </ul>
 
-    <a href="addsite"> Add New Site</a><br>
-    <a href="addDocument">Add New Document</a><br>
-    <a href="viewallsites"> view all sites</a><br>
-
-    <a href="#"> Generate Random Password</a>
-<div class=""></div>
-       
-    {% else %}
-    <a href="accounts/register"><h3>Register</h3></a>
-        <a href="accounts/login"><h3>Login</h3></a>
-    <p>New Global Password Security Report: See how businesses around the world are keeping up with password security
-        and authentication needs </p>
-
-    <h2>Effortless security from anywhere.</h2>
-
-    <h4>life is happening online. Work. Play. Family and friends.</h4>
-    <h4>Password Manager puts your digital life at your fingertips, simply and securely.</h4>
+            {% else %}
+            <ul>
+                <li><a href="accounts/register">
+                        <h3>Register</h3>
+                    </a></li>
+                <li><a href="accounts/login">
+                        <h3>Login</h3>
+                    </a></li>
+            </ul>
+            {% endif %}
+        </div>
 
 
+    </div>
 
-    {% endif %}
+    <div class='dummy'></div>
+
+    {%if user.is_authenticated%}
+    <div class='side-buttons'>
+        <ul>
+
+            <li><a href="addsite"> Add New Site</a></li>
+            <li><a href="addDocument">Add New Document</a></li>
+            <li><a href="viewallsites"> Vault</a></li>
+            <li><a href="GenPass"> Generate Random Password</a></li>
+        </ul>
+    </div>
+    {%endif%}
+
+
+    <div class="dummy"></div>
+
+
+
+    <div class='desc1'>
+        <p>New Global Password Security Report: See how businesses around the world are keeping up with password
+            security
+            and authentication needs </p>
+    </div><br>
+    <div class='desc2'>
+        <h2>EFFORTLESS SECURITY FROM EVERYWHERE.</h2>
+    </div><br>
+
+
+    <div class='desc3'>
+        <h4>Life is happening online. Work. Play. Family and friends.</h4>
+        <h4>Password Manager puts your digital life at your fingertips, simply and securely.</h4>
+    </div><br>
+
+
+
+
+    <div class='footer'>
+        &copy 2021 Imagine, Inc. All Rights Reserved.
+    </div>
+
 </body>
 
 </html>

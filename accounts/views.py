@@ -1,6 +1,9 @@
+# Chinmay N. Dandekar SE-A-9  Expno 8
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+import os
 
 # Create your views here.
 
@@ -32,6 +35,22 @@ def register(request):
         password2 = request.POST['password2']
         email = request.POST['email']
 
+        if first_name == '':
+            messages.info(request, 'First Name cannot be empty.')
+            return render(request, 'register.html')
+        
+        if username == '':
+            messages.info(request, 'Username cannot be empty.')
+            return render(request, 'register.html')
+        
+        if password1 == '':
+            messages.info(request, 'Password cannot be empty.')
+            return render(request, 'register.html')
+
+        if email == '':
+            messages.info(request, 'Email cannot be empty.')
+            return render(request, 'register.html')
+
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username taken')
@@ -44,13 +63,13 @@ def register(request):
                 username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
                 user.save()
                 messages.info(request,'user created')
+
+
                 return redirect('login')
 
         else:
             messages.info(request,"password not matching")
             return redirect('register')
-
-        return redirect('/')
 
     else:
         return render(request, 'register.html')

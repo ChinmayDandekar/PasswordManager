@@ -1,0 +1,259 @@
+
+:root{
+    --black:rgb(28, 29, 28);
+    --orange:orange;
+    --white:white;
+}
+
+*{
+    padding: 0;
+    margin:0;
+    font-family: 'Cascadia Code';
+    /* display:grid;
+    justify-content: center;
+    align-items: center; */
+    /* background-color:rgb(240, 148, 86); */
+    /* background-color: #ffc035; */
+    
+    /* opacity:50%; */
+
+}
+body{
+    background-image: url('/static/PM/images/background2.jpg');
+
+}
+
+.heading{
+    float: left ;
+    box-shadow: 0px 5px 10px rgb(40, 41, 40);
+    width:100%;
+    color:var(--white) ;
+    background-color:var(--black);
+    font-size:36px;
+    padding: 25px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+   
+    
+}
+
+.mainbar{
+
+    float: left;
+    font-size:larger;
+    width:70%;
+    
+}
+.mainbar h3{
+    background-color: var(--black);
+
+}
+
+.mainbar strong{
+    background-color:var(--black);
+    color: var(--orange);
+}
+.sidebar {
+    justify-content: center;
+    align-items: center;
+    float: right;
+    width:10%;
+    font-size: 20px;
+    /* background-color: red; */
+    /* position: relative;
+    z-index: ; */
+}
+
+.sidebar ul{
+	padding:0;
+	list-style:none;
+    
+}
+.sidebar li{ 
+    display:inline;
+    background-color:var(--black) ;
+
+}
+.sidebar a:hover{
+    color:grey;
+}
+
+.sidebar a{
+    text-decoration: none;
+    background-color:var(--black) ;
+
+    color:var(--white);
+    size:10px;
+}
+
+.sidebar h3{
+    background-color:var(--black) ;
+
+}
+.main-cont{
+    /* display:float;    */
+    width:100%
+
+}
+.image-cont{
+    height: 865px;
+    float:left;
+    width:68%;
+    background-color: white;
+    display:grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-cont .image{
+    position: absolute;
+    background-color: red;
+    top:290px;
+    left:170px;
+    width: 1000px;
+    height: 400px;
+    background-image:url("/static/PM/images/Image2.jpg");
+    background-size: 100%;
+}
+
+
+
+.container{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(125%,-50%);
+
+    display:grid;
+    float:right;
+    height:550px;
+    width:400px;
+    margin-right:150px;
+    background-color: var(--black);
+    opacity: 95%;
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgb(40, 41, 40);
+
+
+
+    justify-content: center;
+    /* min-height: %; */
+    align-items:center;
+    
+
+
+}
+
+.container form{
+    background-color:var(--black);
+    justify-content: center;
+    align-items: center;
+    /* font-weight: bolder; */
+
+}
+
+.container form a{
+    text-decoration: none;
+    border:none;
+    margin-top:40px;
+    font-size:19px;
+    padding:20px 30px;
+    margin-left:10px;
+    color:var(--black);
+    background-color: var(--white);
+    border-radius:50px;
+    /* box-shadow: 2px 2px 2px rgb(201, 134, 11); */
+    /* box-shadow: 2px 2px 2px rgb(201, 134, 11); */
+    
+
+
+}
+
+.messages h3{
+    padding-top:29px;
+    text-align: center;
+    background-color: var(--black);
+    color: var(--orange);
+    font-size:14px;
+}
+
+.container h1{
+    background-color: var(--black);
+    color:var(--white);
+    text-align: center;
+    font-size:35px;
+    /* border-radius: 50%; */
+    /* font-weight: ; */
+    /* box-shadow: ; */
+    /* font-style: bold; */
+}
+
+.container b{
+    background-color:var(--black);
+    color:var(--orange)
+}
+
+.container input{
+    
+    color:var(--black);
+
+    text-decoration: none;
+    border:none;
+    margin-top:40px;
+    padding:20px;
+    background-color: var(--white);
+    border-radius:50px;
+    /* box-shadow: 2px 2px 2px  rgb(201, 134, 11); */
+    
+    
+    /* box-decoration-break: none; */
+
+
+}
+.container button{
+    color:var(--black);
+    font-weight: bolder;
+    font-size: 19px;
+    text-decoration: none;
+    border:none;
+    margin-top:40px;
+    padding:20px 35px;
+    background-color: var(--white);
+    border-radius:50px;
+    /* box-shadow: 2px 2px 2px  rgb(201, 134, 11); */
+    
+    
+    /* box-decoration-break: none; */
+
+
+}
+
+.container input:hover{
+    cursor:pointer;
+}
+
+.container input:focus{
+    
+    outline:none;
+    /* text-decoration: none; */
+
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--black);
+    padding:15px 0px;
+    color: white;
+    text-align: center;
+  }
+
+.container input::placeholder{
+    font-size:16px;
+    font-weight: 900;
+}
