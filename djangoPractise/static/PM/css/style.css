@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   font-family: "Cascadia Code", Courier, monospace;
+  /* font-family: 'Bebas Neue', cursive; */
+
+  /* font-family: 'Anton','Cascadia Code'; */
+  
+
 }
 
 .side-buttons a {
@@ -21,13 +26,12 @@
   color: white;
 }
 
-.mainbar strong:hover {
-  /* font-size: 43.5px; */
+/* .mainbar strong:hover {
   background-color: orange;
   color: rgb(28, 29, 28);
   padding: 5px;
   border-radius: 10px;
-}
+} */
 
 .heading {
   float: left;

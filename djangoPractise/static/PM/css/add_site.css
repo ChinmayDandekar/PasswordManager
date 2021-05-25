@@ -17,6 +17,13 @@
   
     
 }
+
+button a{
+    text-decoration: none;
+
+  
+    
+}
 /* body{ */
     /* background-color: rgb(34, 33, 33); */
 
@@ -266,6 +273,11 @@ body{
     font-weight: bolder;
 
 
+}
+
+.container button a{
+    text-decoration: none;
+    color:var(--black);
 }
 
 /* #back{ */

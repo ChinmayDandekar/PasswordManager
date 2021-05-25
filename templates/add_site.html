@@ -4,6 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'PM/images/icon.png' %}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'PM/css/add_site.css'%}">
@@ -17,15 +19,15 @@
             <h3>Password<strong>Manager<strong></h3>
         </div>
         <div class='sidebar'>
-            <!-- <a href="accounts/logout">
+            <a href="accounts/logout">
                 <h3>LogOut</h3>
-            </a> -->
-            <a href="accounts/register">
+            </a>
+            <!-- <a href="accounts/register">
                 <h3>Register</h3>
             </a>
             <a href="accounts/login">
                 <h3>Login</h3>
-            </a>
+            </a> -->
         </div>
 
 
@@ -39,7 +41,7 @@
             <li><a href="addsite"> Add New Site</a></li>
             <li><a href="addDocument">Add New Document</a></li>
             <li><a href="viewallsites"> Vault</a></li>
-            <li><a href="#"> Generate Random Password</a></li>
+            <li><a href="GenPass"> Generate Random Password</a></li>
         </ul>
     </div>
 
@@ -59,7 +61,7 @@
                     {% endfor %}
                 </div>
                 <button type="Submit">Add</button>
-                <button id='back'>Back</button>
+                <button id='back'><a href="../">Back</a></button>
             </form>
         </div>
         <div class="img-cont">
@@ -73,7 +75,7 @@
     
 
     <div class='footer'>
-        &copy 2021 Imagine, Inc. All Rights Reserved. Trademark.
+        &copy 2021 Imagine, Inc. All Rights Reserved.
     </div>
 </body>
 

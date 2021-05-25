@@ -2,53 +2,130 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{% static 'PM/images/icon.png' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View all passwords</title>
-    <script type = "text/javascript" >
+    <link rel="stylesheet" href="{% static 'PM/css/viewallsites.css' %}">
+    <script type="text/javascript">
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
-        </script>
+    </script>
 </head>
+
 <body>
-    hello world
-    {% for pas in passs %}
-    <div>
+    <div class='heading'>
+        <div class='mainbar'>
+            <h3>Password<strong>Manager<strong></h3>
+        </div>
+        <div class='sidebar'>
+            <!-- {% if user.is_authenticated %} -->
+            <!-- <a href="accounts/logout">
+                <h3>LogOut</h3>
+            </a> -->
+            <a href="../">
+                <h3>Back</h3>
+            </a>
+            <!-- {% else %} -->
+            <!-- <a href="accounts/login">
+                    <h3>Login</h3> -->
+            </a>
+            <!-- {% endif %} -->
+        </div>
+
+
+
+    </div>
+    <div class='side-buttons'>
         <ul>
-            <li><h3>Site Name: {{pas.site_name}}</h3></li>
-            <li><h4>Site Url: {{pas.site_url}}</h4></li>
-            <li>Email: {{pas.email}}</li>
-            <li>Phone Number: {{pas.phoneNo}}</li>
-            <li>Username: {{pas.username}}</li>
-            <li>Password: {{pas.password}}</li>
+            <!-- <li></li> -->
+            <li><a href="addsite"> Add New Site</a></li>
+            <li><a href="addDocument">Add New Document</a></li>
+            <li><a href="viewallsites"> Vault</a></li>
+            <li><a href="GenPass"> Generate Random Password</a></li>
         </ul>
     </div>
 
-    {% endfor %}
-    
 
-    {% for doc in docs %}
+    <div class="body-border">
+        <h1 class='Title'>Passwords:</h1>
 
-    <div>
-        <ul>
-            <li><h3>Name: {{doc.filename}}</h3></li>
-            <li><a href="{{doc.file.url}}" download>Download</a></li>
-        </ul>
+        <div class="grid-container">
+
+
+            <!-- {% for pas in passs %} -->
+            <div class="info-cont-background">
+                <div class='info-cont'>
+                    <ul>
+                        <li>
+                            <h2>{{pas.site_name}}</h2>
+                        </li>
+                        <li>
+                            <h4><a href="http://{{pas.site_url}}" target="_blank">{{pas.site_url}}</a></h4>
+                        </li>
+                        {% if not pas.email == '-' %}
+                        <li>Email: {{pas.email}}</li>
+                        {% endif %}
+
+                        {% if not pas.phoneNo == '-' %}
+                        <li>Phone Number: {{pas.phoneNo}}</li>
+                        {% endif %}
+
+                        {% if not pas.username == '-' %}
+                        <li>Username: {{pas.username}}</li>
+                        {% endif %}
+
+                        <li>Password: {{pas.password}}</li>
+                        <!-- <br> -->
+                        <a href="deletePass?siteName={{pas.site_name|urlencode}}&sitePassword={{pas.password|urlencode}}"
+                            class='buttons'>Delete</a>
+                    </ul>
+                </div>
+            </div>
+            <!-- {% endfor %} -->
+        </div>
+
+
+        <br>
+        <h1 class='Title'>Documents:</h1>
+
+
+        <div class="grid-container">
+
+            <!-- {% for doc in docs %} -->
+            <div class="info-cont-background">
+                <div class='info-cont'>
+
+                    <ul>
+                        <li>
+                            <h2>{{doc.filename}}</h2>
+                        </li>
+
+                        <a href="{{doc.file.url}}" class='buttons' download>Download</a>
+                        <a href="deleteDoc?doc_name={{doc.filename|urlencode}}" class='buttons'>Delete</a>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- {% endfor %} -->
+        </div>
+
+
+
+
+        <br>
+        <br>
     </div>
 
-    {% endfor %}
-
-
-
-    <div>
-        {%for message in messages%}
-        <h3>{{message}}</h3>
-        {% endfor %}
+    <!-- <button id='back'><a href="../">Back</a></button> -->
+    <div class='footer'>
+        &copy 2021 Imagine, Inc. All Rights Reserved.
     </div>
 
-    
 </body>
+
 </html>

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'PM/images/icon.png' %}">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+    function update_data() {
+        $.ajax({
+          method: "POST",
+          url: "/coins",
+          data: {},
+          success: function(data) {
+            console.log(data) // check out how data is structured
+    
+            // Update the coin amount
+            $('.status').contents()[0].textContent = 'Balance&nbsp'+data.coins
+          }
+        })
+      };
+    </script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 
+        $('#checkb').click(function(e){ 
+            if (e.target.checked) { 
+              localStorage.checked = true; 
+          } else { 
+              localStorage.checked = false; 
+          } 
+        }) 
+         
+        $( document ).ready(function() { 
+           
+            document.querySelector('#checkb').checked = localStorage.checked 
+           
+        }); 
+        </script> -->
+    
+
+    <script>
+        function submitform() {
+            document.getElementById("form1").submit();
+            
+        }
+    </script>
+</head>
+
+<body>
+    <form action="" method='post' id='form1'>
+        {% csrf_token %}
+        <!-- <input type="text"  name="password"> -->
+        <input onclick="submitform()" type="checkbox" name='LowerCase' id='checkb' {% if lower %} checked {% endif %} />LowerCase<br>
+        <!-- <input type="hidden" name='LowerCase' value='False'> -->
+        <input onclick="submitform()" type="checkbox" name='UpperCase' id='checkb'{% if upper %} checked {% endif %}/>UpperCase <br>
+        <!-- <input type="hidden" name='UpperCase' value='False'> -->
+        <input onclick="submitform()" type="checkbox" name='Symbols' id='checkb'{% if sym %} checked {% endif %}/>Symbols <br>
+        <!-- <input type="hidden" name='Symbols' value='False'> -->
+        <input onclick="submitform()" type="checkbox" name='Digits' id='checkb'{% if digit %} checked {% endif %}/> Digits <br>
+        <!-- <input type="hidden" name='Digits' value='False'> -->
+
+        <!-- <div name="slider" class="slider"></div> -->
+        <input onclick="submitform()" type="range" min='9' max='25' value={{max}} name='slider'>
+        <!-- <input type="Submit"> -->
+        Password is : {{pass}} <br>
+        <button id='back'><a href="/">Back</a></button>
+
+    </form>
+    <div>
+        {%for message in messages%}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

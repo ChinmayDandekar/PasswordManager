@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View all passwords</title>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+</head>
+
+<body>
+ 
+    {% for pas in passs %}
+    <div>
+        <ul>
+            <li>
+                <h3>Site Name: {{pas.site_name}}</h3>
+            </li>
+            <li>
+                <h4>Site Url: {{pas.site_url}}</h4>
+            </li>
+            {% if not pas.email == '-' %}
+            <li>Email: {{pas.email}}</li>
+            {% endif %}
+
+            {% if not pas.phoneNo == '-' %}
+            <li>Phone Number: {{pas.phoneNo}}</li>
+            {% endif %}
+
+            {% if not pas.username == '-' %}
+            <li>Username: {{pas.username}}</li>
+            {% endif %}
+
+            <li>Password: {{pas.password}}</li>
+            <li><a href="deletePass?siteName={{pas.site_name|urlencode}}&sitePassword={{pas.password|urlencode}}">delete</a></li>
+        </ul>
+    </div>
+
+    {% endfor %}
+
+
+    {% for doc in docs %}
+
+    <div>
+        <ul>
+            <li>
+                <h3>Name: {{doc.filename}}</h3>
+            </li>
+
+            <li><a href="{{doc.file.url}}" download>Download</a></li>
+            <li><a href="deleteDoc?doc_name={{doc.filename|urlencode}}">Delete</a></li>
+        </ul>
+    </div>
+
+    {% endfor %}
+
+
+
+    <div>
+        {%for message in messages%}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+    <button id='back'><a href="../">Back</a></button>
+
+
+</body>
+
+</html>

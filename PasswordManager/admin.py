@@ -1,4 +1,4 @@
-from PasswordManager.models import Passwords,Documents
+# from PasswordManager.models import Passwords,Documents
 from django.contrib import admin
 
 # Register your models here.

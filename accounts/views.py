@@ -8,6 +8,8 @@ import os
 # Create your views here.
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     
     if request.method == 'POST':
 
@@ -26,6 +28,8 @@ def login(request):
         return render(request, 'login.html')
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
 
     if request.method == 'POST':
         first_name = request.POST['first_name']

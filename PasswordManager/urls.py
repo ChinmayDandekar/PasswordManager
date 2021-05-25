@@ -7,6 +7,8 @@ urlpatterns = [
     path('viewallsites', views.viewallsites ,name='viewallsites'),
     path('addDocument', views.addDocument, name='addDocument'),
     path('GenPass', views.GenPass, name='GenPass'),
+    path('deleteDoc', views.deleteDoc, name='deleteDoc'),
+    path('deletePass', views.deletePass, name='deletePass'),
     # path('downloadFile', views.downloadFile, name='downloadFile'),
 
 ]

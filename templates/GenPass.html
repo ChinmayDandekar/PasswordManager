@@ -1,39 +1,189 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'PM/images/icon.png' %}">
+    <link rel="stylesheet" href="{% static 'PM/css/GenPass.css' %}">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   
+
+
+
     <script>
-        $(function() {
-            $( ".slider").slider({
-             min: 0,
-             max: 1,
-             value: 0.3,
-             step: 0.05,
-            })
-           });
+        function submitform() {
+            document.getElementById("form1").submit(); 
+        }
+        function updateTextInput(val) {
+            document.getElementById('range-text').value=val; 
+          }
+
+        function updateSliderInput(val) {
+            document.getElementById('slider').value=val; 
+          }
+
+       
+
+        
+
+        function copyPassword() {
+            /* Get the text field */
+            var copyText = document.getElementById("password");
+          
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+          
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+            
+            /* Alert the copied text */
+            /*alert("Copied the text: " + copyText.value);*/
+            return false;
+
+          }
     </script>
 </head>
+
 <body>
-    <form action="" method='post'>
-        {% csrf_token %}
-        <!-- <input type="text"  name="password"> -->
-        <input type="checkbox" name='LowerCase' value='True'>LowerCase<br>
-        <input type="hidden" name='LowerCase' value='False'>
-        <input type="checkbox" name='UpperCase' value='True'>UpperCase <br>
-        <input type="hidden" name='UpperCase' value='False'>
-        <input type="checkbox" name='Symbols' value='True'>Symbols <br>
-        <input type="hidden" name='Symbols' value='False'>
-        <input type="checkbox" name='Digits' value='True'> Digits <br>
-        <input type="hidden" name='Digits' value='False'>
+    <div class="background">
+        <div class='heading'>
+            <div class='mainbar'>
+                <h3>Password<strong>Manager<strong></h3>
+            </div>
+            <div class='sidebar'>
+                <!-- {% if user.is_authenticated %} -->
+                <a href="accounts/logout">
+                    <h3>LogOut</h3>
+                </a>
+                <a href="/">
+                    <h3>Back</h3>
+                </a>
+                <!-- {% else %} -->
+                <!-- <a href="accounts/register">
+                    <h3>Register</h3>
+                </a>
+                <a href="accounts/login">
+                    <h3>Login</h3> -->
+                </a>
+                <!-- {% endif %} -->
+            </div>
+    
+    
+        </div>
+    
+        <div class='side-buttons'>
+            <ul>
+                <!-- <li></li> -->
+                <li><a href="addsite"> Add New Site</a></li>
+                <li><a href="addDocument">Add New Document</a></li>
+                <li><a href="viewallsites"> Vault</a></li>
+                <li><a href="GenPass"> Generate Random Password</a></li>
+            </ul>
+        </div>
+    
+       <div class="main-container">
+        <div class="container">
+            <form action="" method='post' id='form1'>
+                {% csrf_token %}
 
-        <div name="slider" class="slider"></div>
-        <!-- <input type="range" min='4' max='25' value="14" class='slider'> -->
-        <input type="Submit">
-        Password is : {{password}}
 
-    </form>
+                <input type="text" name="" id="password" value='{{pass}}'>
+
+
+                <div class='messages'>
+                    {%for message in messages%}
+                    <h3>{{message}}</h3>
+                    {% endfor %}
+                </div>
+                
+                <div class="slider-cont">
+                    
+                    {% csrf_token %}
+                    <input onclick="updateTextInput(this.value);submitform()" type="range" min='4' max='25' value={{max}} name='slider' id='slider' class='range-style'>
+                    <input oninput="updateSliderInput(this.value);"type="number" min='4' max='25' name="range-text" id="range-text" value="{{max}}" >
+                </div>
+                <div class="checkboxes">
+                   <div class="cb">
+                    <h2>Lowercase</h2>
+                    <label class="toggle-control">
+                        {% csrf_token %}
+                        <input onclick="submitform()" type="checkbox" name='LowerCase' id='checkb' {% if lower %}  checked{% endif %} />
+                        <span class="control"></span>
+                    </label>
+                   </div>
+                   
+                   <div class="cb">
+                    <h2>Uppercase</h2>
+                    <label class="toggle-control">
+                        {% csrf_token %}
+                        <input onclick="submitform()" type="checkbox" name='UpperCase' id='checkb'{% if upper %} checked {% endif %}/>
+
+                        <span class="control"></span>
+                    </label>
+                   </div>
+
+                   <div class="cb">
+                    <h2>Symbols</h2>
+                    <label class="toggle-control">
+                        {% csrf_token %}
+                        <input onclick="submitform()" type="checkbox" name='Symbols' id='checkb'{% if sym %} checked {% endif %}/>
+                        
+                        <span class="control"></span>
+                    </label>
+                   </div>
+
+                   <div class="cb">
+                    <h2>Digits</h2>
+                    <label class="toggle-control">
+                        {% csrf_token %}
+                        <input onclick="submitform()" type="checkbox" name='Digits' id='checkb'{% if digit %} checked {% endif %}/> 
+                        
+                        <span class="control"></span>
+                    </label>
+                   </div>
+                   <div class="buttons">
+                    <button type="submit"><svg width="26px" height="23px" viewBox="0 -3 23 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="icon-generate-x" fill="#ffffff" fill-rule="nonzero">
+                                <path d="M4.8475593,16.1726859 C6.46862836,19.0831989 9.54418837,21.0000039 12.999586,21.0000039 C17.3090094,21.0000039 21.031762,18.0180594 22.0731571,13.8370355 C22.206516,13.3016223 22.7422185,12.9773223 23.2696821,13.1126911 C23.7971457,13.2480598 24.1166307,13.791836 23.9832718,14.3272491 C22.7220321,19.3909114 18.2164369,22.999917 12.999586,22.999917 C8.71317078,22.999917 4.91032409,20.5639516 2.98935914,16.8921521 L1.92403569,20.2641953 C1.75789504,20.7900764 1.20323022,21.0796738 0.685157137,20.9110292 C0.167084055,20.7423846 -0.11821355,20.1793603 0.0479271009,19.6534792 L1.94317819,13.6544856 C2.13141501,13.058664 2.80640172,12.7827048 3.34892222,13.0797661 L8.75266998,16.0386302 C9.23150673,16.300821 9.41028878,16.9073927 9.15199087,17.3934461 C8.89369296,17.8794995 8.29612726,18.0609761 7.81729052,17.7987853 L4.8475593,16.1726859 Z" id="arrow-bottom"></path>
+                                <path d="M13.0004926,1.99991305 C8.69106914,1.99991305 4.96831656,4.98185759 3.9269214,9.16288152 C3.79356253,9.69829466 3.25786007,10.0225947 2.73039647,9.88722594 C2.20293288,9.75185718 1.88344788,9.20808101 2.01680675,8.67266788 C3.27804645,3.60900562 7.78364164,0 13.0004926,0 C17.2869078,0 21.0897545,2.43596539 23.0107194,6.10776488 L24.0760429,2.73572166 C24.2421835,2.20984057 24.7968483,1.92024317 25.3149214,2.08888777 C25.8329945,2.25753237 26.1182921,2.82055669 25.9521514,3.34643778 L24.0569004,9.34543142 C23.8686635,9.94125301 23.1936768,10.2172122 22.6511563,9.92015091 L17.2474086,6.96128681 C16.7685718,6.69909603 16.5897898,6.09252427 16.8480877,5.60647086 C17.1063856,5.12041745 17.7039513,4.93894093 18.182788,5.20113171 L21.1525192,6.82723112 C19.5314502,3.91671811 16.4558902,1.99991305 13.0004926,1.99991305 Z" id="arrow-top"></path>
+                            </g>
+                        </g>
+                    </svg> Generate</button>
+                    <button onclick="return copyPassword()"><?xml version="1.0" encoding="iso-8859-1"?>
+                        <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg width='24px' height='23px' version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 488.3 488.3" style="enable-background:new 0 0 488.3 488.3;" xml:space="preserve" fill="#ffffff">
+                        <g>
+                            <g>
+                                <path d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124
+                                    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124
+                                    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z"/>
+                                <path d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227
+                                    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6
+                                    V38.6C439.65,17.3,422.35,0,401.05,0z"/>
+                            </g>
+                        </g>
+                        </svg> Copy text</button>
+                   </div>
+                   <!-- <img src="{% static 'PM/images/copyimage.png' %}" alt=""> -->
+
+                </div>
+                
+            </form>
+        </div>
+       </div>
+        
+    
+        <div class='footer'>
+            &copy 2021 Imagine, Inc. All Rights Reserved. Trademark.
+        </div>
+    </div>
 </body>
+
 </html>
