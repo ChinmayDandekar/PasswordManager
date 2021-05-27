@@ -14,13 +14,21 @@
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
+
+
+
+        function getAlert(image) {
+            ('Here\'s an alert!')
+          }
     </script>
 </head>
 
 <body>
     <div class='heading'>
         <div class='mainbar'>
-            <h3>Password<strong>Manager<strong></h3>
+            <a href="/">
+                <h3>Password<strong id='str'>Manager<strong></h3>
+            </a>
         </div>
         <div class='sidebar'>
             <!-- {% if user.is_authenticated %} -->
@@ -57,15 +65,15 @@
         <div class="grid-container">
 
 
-            <!-- {% for pas in passs %} -->
+            {% for pas in passs %}
             <div class="info-cont-background">
                 <div class='info-cont'>
                     <ul>
                         <li>
-                            <h2>{{pas.site_name}}</h2>
+                            <h2 title="{{pas.site_name}}">{{pas.site_name}}</h2>
                         </li>
                         <li>
-                            <h4><a href="http://{{pas.site_url}}" target="_blank">{{pas.site_url}}</a></h4>
+                            <h4><a href="http://{{pas.site_url}}" target="_blank">URL: {{pas.site_url}} 🔗</a></h4>
                         </li>
                         {% if not pas.email == '-' %}
                         <li>Email: {{pas.email}}</li>
@@ -86,7 +94,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- {% endfor %} -->
+            {% endfor %}
         </div>
 
 
@@ -102,7 +110,7 @@
 
                     <ul>
                         <li>
-                            <h2>{{doc.filename}}</h2>
+                            <h2  title="{{doc.filename}}" >{{doc.filename}}</h2>
                         </li>
 
                         <a href="{{doc.file.url}}" class='buttons' download>Download</a>
@@ -113,9 +121,6 @@
 
             <!-- {% endfor %} -->
         </div>
-
-
-
 
         <br>
         <br>

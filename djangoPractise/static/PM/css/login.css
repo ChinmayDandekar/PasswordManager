@@ -101,6 +101,12 @@
     justify-content:space-between;
 
 }
+
+.mainbar a {
+    text-decoration: none;
+    color: white;
+  }
+
 .image-cont{
     /* float:left 60%; */
     /* height: 865px; */

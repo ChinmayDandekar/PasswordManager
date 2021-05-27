@@ -25,7 +25,8 @@
 
 body{
 
-    background-image: url('/static/PM/images/background12.jfif');
+    /* background-image: url('/static/PM/images/back.jpg'); */
+    background-size: cover;
     background-image: linear-gradient(to right,#1e272c,#2b353b);
     
 }
@@ -218,6 +219,11 @@ body{
    border-bottom-right-radius: 50px; 
 }
 
+.mainbar a {
+    text-decoration: none;
+    color: white;
+  }
+
 .buttons{
     width:auto;
     /* background-color: red; */
@@ -226,7 +232,7 @@ body{
     margin-top:10px;
 }
 
-button{
+.but{
     
     height:70px;
     width:126px;
@@ -245,12 +251,20 @@ button{
     /* box-shadow: 4px 4px 6px #a5a9ab; */
 
 }
-button:hover{
+.but:hover{
     color:orange;
+    /* box-shadow: none; */
+}
+
+.but:active{
     box-shadow: none;
 }
 
 .buttons a{
+    /* display: block; */
+    /* height:70px;
+    width:126px; */
+    padding:25px 40px;
     text-decoration: none;
     color: white;
 }

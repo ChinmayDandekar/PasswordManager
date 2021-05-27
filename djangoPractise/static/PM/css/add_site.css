@@ -115,6 +115,11 @@ button a{
     
 } */
 
+.mainbar a {
+    text-decoration: none;
+    color: white;
+  }
+
 .side-buttons li{
     display:inline;
     
@@ -141,8 +146,9 @@ button a{
 
 body{
     /* background-color: var(--black); */
-    background-image: url('/static/PM/images/sunset2.jpg');
-    background-size:cover;
+    background-image: url('/static/PM/images/white.jpg');
+    /* background-size:cover; */
+    /* background-color: #C5A553; */
     /* background-image: url('background6.jfif'); */
 }
 
@@ -163,7 +169,7 @@ body{
     height: auto;
     border-radius: 50px;
 
-    /* box-shadow: 0px 2px 5px white; */
+    box-shadow: 10px 10px 50px grey;
 
 }
 
@@ -260,7 +266,7 @@ body{
     
 }
 
-.container button{
+.container .but{
     border-style: solid;
     border-width: 2px;
     border-color: #ffd545;
@@ -275,7 +281,7 @@ body{
 
 }
 
-.container button a{
+.container  a{
     text-decoration: none;
     color:var(--black);
 }
@@ -297,6 +303,9 @@ body{
   }
 
   @media screen and (max-width:1980px){
+      body{
+          background-size:cover;
+      }
     .img-cont{
         display:none;
     }

@@ -36,7 +36,7 @@ body{
 
     border-radius: 30px;
     border-width: 14px;
-    min-width: 700px;
+    min-width: 790px;
     min-height: 800px;
 }
 
@@ -45,7 +45,6 @@ body{
 
 .heading{
     display: flex;
-    justify-content: space-between  ;
     box-shadow: 0px 5px 10px rgb(40, 41, 40);
     width:100%;
     color:white ;
@@ -53,6 +52,7 @@ body{
     font-size:36px;
     padding: 25px;
     box-sizing: border-box;
+    justify-content: space-between  ;
     position: relative;
     z-index: 10;
    
@@ -63,7 +63,7 @@ body{
 
     /* float: left; */
     font-size:larger;
-    width:40%;
+    /* width:30%; */
     
 }
 
@@ -71,7 +71,7 @@ body{
     justify-content: center;
     align-items: center;
     /* float: right; */
-    width:10%;
+    /* width:10%; */
     font-size: 20px;
 }
 
@@ -113,7 +113,7 @@ body{
     padding:12px;
     /* border-radius:20px; */
     position: relative;
-    min-width:100vh;
+    /* min-width:100vh; */
 
 
     z-index:9;
@@ -209,12 +209,27 @@ h4 a{
     justify-content: center;
 
 }
+
+.mainbar a {
+    text-decoration: none;
+    color: white;
+  }
+
 .info-cont h2{
     background-color: rgb(255, 208, 0);
     color:var(--black);
     text-align: center;
     padding:20px 10px;
     border-radius: 20px;
+    content: attr(title);
+    box-shadow:  0 4px 4px black;
+    /* font-size: 1.5vw; */
+    cursor: default;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 240px;
+    
     /* margin-left:-14px; */
     margin-top: -50px;
     box-shadow: 0 0 1px orangered;
@@ -296,3 +311,36 @@ li{
   }
 
  
+
+
+
+  /* .tooltip {
+    display: inline;
+    position: relative;
+  }
+  .tooltip:hover:after{
+
+    display: none;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: #444;
+    border-radius: 8px;
+    color: #fff;
+    content: attr(title);
+    margin: -82px auto 0;
+    font-size: 16px;
+    padding: 13px;
+    height: 50px;
+    width: 220px;
+  }
+  .tooltip:hover:before{
+    border: solid;
+    display: none;
+    border-color: #444 transparent;
+    border-width: 12px 6px 0 6px;
+    content: "";
+    left: 45%;
+    bottom: 30px;
+    position: absolute;
+  } */

@@ -78,10 +78,13 @@ def decryptit(encryptedText):
 def checkEmail(email):
     
     regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-    if re.search(regex, email):
-        return True
-    else:
-        return False
+    return re.search(regex, email)
+     
+
+# def checkUrl(url):
+#     regex = "((http|https)://)(www.)?" + "[a-zA-Z0-9@:%.\+~#?&//=]{2,256}\.[a-z]" + "{2,6}\b([-a-zA-Z0-9@:%.\+~#?&//=]*)"
+#     return re.search(regex,url)
+
 
 def isNull(n):
     if n == '':
@@ -264,6 +267,10 @@ def addsite(request):
             messages.info(request, 'No information should be empty')
             return redirect('addsite')
 
+        # if not checkUrl(site_url):
+        #     messages.info(request, 'Please enter correct url!!')
+        #     return redirect('addsite')
+
 
         if username.isnumeric():
             phoneNo = username
@@ -299,7 +306,7 @@ def GenPass(request):
     checkEncryption(request)
 
     if request.method == 'GET':
-        return render(request,'GenPass.html' ,{'max':15,} )
+        return render(request,'GenPass.html' ,{'max':15,'sample':'mpEjFdnhTQQfdut'})
 
     
 
@@ -413,4 +420,4 @@ def GenPass(request):
     print(password)
     val = MAX_LEN
 
-    return render(request, 'GenPass.html' ,{'pass':password,'upper':onPressUpper,'lower':onPressLower,'sym':onPressSymbols,'digit':onPressDigits, 'max':val})
+    return render(request, 'GenPass.html' ,{'pass':password,'upper':onPressUpper,'lower':onPressLower,'sym':onPressSymbols,'digit':onPressDigits, 'max':val,'sample':''})

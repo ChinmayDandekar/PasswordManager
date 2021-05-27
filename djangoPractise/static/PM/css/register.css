@@ -83,6 +83,12 @@ body {
   /* justify-content: center; */
 }
 
+
+.mainbar a {
+  text-decoration: none;
+  color: white;
+}
+
 .container {
   position: absolute;
   top: 54%;

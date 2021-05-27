@@ -56,6 +56,10 @@ def register(request):
             return render(request, 'register.html')
 
         if password1 == password2:
+            if len(password1) < 8:
+                messages.info(request,"Password should be atleast 8 characters")
+                return redirect('register')
+
             if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username taken')
                 return redirect('register')

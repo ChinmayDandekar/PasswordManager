@@ -9,6 +9,12 @@
 
 }
 
+
+.mainbar a {
+  text-decoration: none;
+  color: white;
+}
+
 .side-buttons a {
   text-decoration: none;
   color: inherit;

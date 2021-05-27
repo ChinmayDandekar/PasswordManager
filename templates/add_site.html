@@ -10,13 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'PM/css/add_site.css'%}">
     <title>Add Site</title>
+
+
+    <script>
+        function asachtimepass(){
+            return false;
+        }
+    </script>
 </head>
 
 <body>
     
     <div class='heading'>
         <div class='mainbar'>
-            <h3>Password<strong>Manager<strong></h3>
+            <a href="/">
+                <h3>Password<strong id='str'>Manager<strong></h3>
+            </a>
         </div>
         <div class='sidebar'>
             <a href="accounts/logout">
@@ -60,8 +69,8 @@
                     <h4>{{message}}</h4>
                     {% endfor %}
                 </div>
-                <button type="Submit">Add</button>
-                <button id='back'><a href="../">Back</a></button>
+                <button class='but'type="Submit">Add</button>
+               <a class ='but' href="../">Back</a></button>
             </form>
         </div>
         <div class="img-cont">

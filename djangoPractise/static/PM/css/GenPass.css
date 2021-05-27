@@ -400,8 +400,14 @@ input[type=number] {
     text-align: center;
     padding-top: 10px;
     color:rgb(100, 29, 4);
+
     
 }
+
+.mainbar a {
+    text-decoration: none;
+    color: white;
+  }
 
 .buttons{
     display: flex;

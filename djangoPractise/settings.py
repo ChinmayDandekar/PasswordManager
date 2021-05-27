@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # 'accounts.apps.AccountsConfig'
     'PasswordManager.apps.PasswordmanagerConfig',
+    # 'mfa',
     # 'travelapp.apps.TravelappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
