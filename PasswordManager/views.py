@@ -1,43 +1,31 @@
-# from djangoPractise.settings import MEDIA_ROOT
+from djangoPractise.settings import BASE_DIR
 from cryptography.fernet import Fernet,InvalidToken
 from django.shortcuts import render,redirect
-# from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Passwords,Documents
 from Crypto.Cipher import AES
-# from django.conf import settings
-# from django.core.files.storage import FileSystemStorage
 import base64
 import os
 import re
 import shutil
 import random ,array
-# a = Album.objects.get(pk = 3)
-# >>> a.genre = "Pop"
-# >>> a.save()
+
 
 isEncrypted = None
 
-# def downloadFile(request):
-#     path = request.POST['']
-#     pass
 
-# def isLogOut(request):
-#     if not request.user.is_authenticated:
-#         return redirect('/')
-    
 
 def checkEncryption(request):
     global isEncrypted
     docs = Documents.objects.filter(user=str(request.user.username))
     try:
         for i in docs:
-            decFile(os.path.join(f"C:\\Users\\chinm\\OneDrive\\Desktop\\Python\\django practise\\djangoPractise\\media\\uploads\\{str(request.user.username)}\\{i.filename}"))
+            decFile(os.path.join(fr"{BASE_DIR}\media\uploads\{str(request.user.username)}\{i.filename}"))
     except InvalidToken:
         pass
     finally:
         for i in docs:
-            encFile(os.path.join(f"C:\\Users\\chinm\\OneDrive\\Desktop\\Python\\django practise\\djangoPractise\\media\\uploads\\{str(request.user.username)}\\{i.filename}"))
+            encFile(os.path.join(fr"{BASE_DIR}\media\uploads\{str(request.user.username)}\{i.filename}"))
             isEncrypted =True
 
         
@@ -81,9 +69,6 @@ def checkEmail(email):
     return re.search(regex, email)
      
 
-# def checkUrl(url):
-#     regex = "((http|https)://)(www.)?" + "[a-zA-Z0-9@:%.\+~#?&//=]{2,256}\.[a-z]" + "{2,6}\b([-a-zA-Z0-9@:%.\+~#?&//=]*)"
-#     return re.search(regex,url)
 
 
 def isNull(n):
@@ -97,14 +82,7 @@ def isNull(n):
 def index(request):
     global isEncrypted
     checkEncryption(request)
-    # try:
-    # docs = Documents.objects.filter(user = str(request.user.username))
-    # if not isEncrypted:
-    #     for i in docs:
-    #         encFile(os.path.join("C:\\Users\\chinm\\OneDrive\\Desktop\\Python\\django practise\\djangoPractise\\media\\uploads\\",i.filename))
-            
-    # finally:
-    #     isEncrypted = True      
+     
     print('index',isEncrypted)
     return render(request, 'index.html' )
 
@@ -113,36 +91,26 @@ def viewallsites(request):
         messages.info(request,'You need to Log In first!!!')
         return redirect('accounts/login')
     global isEncrypted
-    # if request.method=='POST':
-    #     ppath = request.FILES['Path']
-    #     print(ppath)
-    #     # downloadFile(path)
+    
     checkEncryption(request)
 
-    # pas = Passwords.objects.all()
     passs = Passwords.objects.filter(user = str(request.user.username))
     docs = Documents.objects.filter(user = str(request.user.username))
 
-    # if len(passs) == 0:
-    #     messages.info(request, 'You dont have any Passwords saved currently!!')
-    
-    # if len(docs) == 0:
-    #     messages.info(request, 'You dont have any Docuements saved currently!!')
+
 
 
     print('vault',isEncrypted)
     if isEncrypted == True :
         for i in docs:
             # print(i.filename)
-            path = os.path.join(f"C:\\Users\\chinm\\OneDrive\\Desktop\\Python\\django practise\\djangoPractise\\media\\uploads\\{str(request.user.username)}\\{i.filename}")
+            path = os.path.join(fr"{BASE_DIR}\media\uploads\{str(request.user.username)}\{i.filename}")
             # print(path)
             decFile(path)
         isEncrypted = False 
-    # print('vault',isEncrypted)
 
     for i in passs:
         i.password = decryptit(i.password)
-    # passs.append(siteurl)
 
     print(passs)
     return render(request, 'viewallsites.html' ,{'passs' : passs,'docs':docs})
@@ -165,7 +133,7 @@ def addDocument(request):
         messages.info(request,'No file Selected')
         return render(request,'addDocument.html')
     
-    userpath = fr"C:\Users\chinm\OneDrive\Desktop\Python\django practise\djangoPractise\media\uploads\{str(request.user.username)}"
+    userpath = fr"{BASE_DIR}\media\uploads\{str(request.user.username)}"
 
     if not os.path.exists(userpath):
         os.makedirs(userpath)
@@ -173,9 +141,6 @@ def addDocument(request):
     
 
     doc = request.FILES['document']
-    # doc = request.FILES
-    # # print(doc)
-    # file = request.POST['document']
     
     if Documents.objects.filter(file = f"uploads\{str(request.user.username)}\{doc.name}").exists():
         messages.info(request,'The given document already exists.')
@@ -188,8 +153,8 @@ def addDocument(request):
     )
     document.save()
 
-    ogpath = fr'C:\Users\chinm\OneDrive\Desktop\Python\django practise\djangoPractise\media\uploads\{doc.name}'
-    movpath = fr'C:\Users\chinm\OneDrive\Desktop\Python\django practise\djangoPractise\media\uploads\{str(request.user.username)}\{doc.name}'
+    ogpath = fr'{BASE_DIR}\media\uploads\{doc.name}'
+    movpath = fr'{BASE_DIR}\media\uploads\{str(request.user.username)}\{doc.name}'
     shutil.move(ogpath,movpath)
 
     d = Documents.objects.filter(user = str(request.user.username)).get(filename = doc.name )
@@ -199,18 +164,9 @@ def addDocument(request):
     d.save()
 
 
-    # fs = FileSystemStorage(location= os.path.join(MEDIA_ROOT,'/uploads'))
-    # filename = fs.save(doc.name, doc)
     messages.info(request,'Document Stored')
-    # docs = Documents.objects.all()
-    # for docu in docs:
-    #     if docu.name == doc.name:
-    #         path = docu.file.path()
-            
-    # else:
-        # print('File not found')
 
-    path = os.path.join(f"C:\\Users\\chinm\\OneDrive\\Desktop\\Python\\django practise\\djangoPractise\\media\\uploads\\{str(request.user.username)}\\{doc.name}")
+    path = os.path.join(fr"{BASE_DIR}\media\uploads\{str(request.user.username)}\{doc.name}")
     print(path)
     encFile(path)
     isEncrypted = True
@@ -222,7 +178,7 @@ def deleteDoc(request):
     print(docname)
     d = Documents.objects.filter(user = str(request.user.username)).get(filename = docname )
     filepath = d.file.url
-    os.remove(fr"C:\Users\chinm\OneDrive\Desktop\Python\django practise\djangoPractise{filepath}")
+    os.remove(fr"{BASE_DIR}\{filepath}")
     print(filepath)
     d.delete()
     return redirect('viewallsites')
@@ -267,10 +223,7 @@ def addsite(request):
             messages.info(request, 'No information should be empty')
             return redirect('addsite')
 
-        # if not checkUrl(site_url):
-        #     messages.info(request, 'Please enter correct url!!')
-        #     return redirect('addsite')
-
+  
 
         if username.isnumeric():
             phoneNo = username
@@ -303,6 +256,7 @@ def GenPass(request):
         messages.info(request,'You need to Log In first!!!')
         return redirect('accounts/login')
     global isEncrypted
+    
     checkEncryption(request)
 
     if request.method == 'GET':
@@ -310,18 +264,12 @@ def GenPass(request):
 
     
 
-    MAX_LEN = 15
-    # if request.POST['range-text']:
-    #     MAX_LEN = int(request.POST['range-text'])
-    # else:
+
     MAX_LEN = int(request.POST['slider'])
         
     print(MAX_LEN)
 
-    # onPressUpper = request.POST['UpperCase']
-    # onPressLower = request.POST['LowerCase']
-    # onPressSymbols = request.POST['Symbols']
-    # onPressDigits = request.POST['Digits']
+  
 
     onPressUpper = request.POST.get('UpperCase', '') == 'on'
     print(onPressUpper)
@@ -334,29 +282,7 @@ def GenPass(request):
     onPressDigits = request.POST.get('Digits', '') == 'on'
     print(onPressDigits)
 
-    # # if request.POST['UpperCase']:
-    #     onPressUpper = request.POST['UpperCase']
-    # # else:
-    #     onPressUpper = 'False'
-    # print(onPressUpper)
-    
-    # if request.POST['LowerCase']:
-    #     onPressLower = request.POST['LowerCase']
-    # else:
-    #     onPressLower = 'False'
-    # print(onPressLower)
 
-    # if request.POST['Symbols']:
-    #     onPressSymbols = request.POST['Symbols']
-    # else:
-    #     onPressSymbols = 'False'
-    # print(onPressSymbols)
-
-    # if request.POST['Digits']:
-    #     onPressDigits = request.POST['Digits']
-    # else:
-    #     onPressDigits = 'False'
-    # print(onPressDigits)
 
     
 
@@ -398,9 +324,12 @@ def GenPass(request):
         temp_pass += random.choice(DIGITS)      
         optChoosen+=1
 
+
     if(optChoosen ==0):
         messages.info(request, "Atleast one option should be selected")
         return redirect('GenPass')
+
+
     
     
     print(optChoosen)
@@ -419,5 +348,6 @@ def GenPass(request):
 
     print(password)
     val = MAX_LEN
+
 
     return render(request, 'GenPass.html' ,{'pass':password,'upper':onPressUpper,'lower':onPressLower,'sym':onPressSymbols,'digit':onPressDigits, 'max':val,'sample':''})

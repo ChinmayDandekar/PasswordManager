@@ -46,6 +46,20 @@
             return false;
 
           }
+
+          function reloadCount(){
+            var _hash = window.location.hash;
+            if( _hash ){
+            var x = parseInt( window.location.hash.replace("#", ""));
+            x = x+1;
+            console.log(x)
+            window.location.hash=x;
+            }else{
+            window.location.hash = "1";
+            x=0;
+            } 
+            return x;
+          }          
     </script>
 </head>
 
@@ -93,12 +107,11 @@
             <form action="" method='post' id='form1'>
                 {% csrf_token %}
 
-                {%  if sample == ''%}
-                <input type="text" name="" id="password" value='{{pass}}'>
+                <!-- <input type="text" name="" id="password" value='{{pass}}'> -->
                 
-                {% else %}
-                <input type="text" name="" id="password" value='{{sample}}'>
-                {% endif %}
+                <input type="text" name="" id="password" {% if sample == '' %} value='{{pass}}' {% else %}value='{{sample}}' {% endif %}>
+               
+                <!-- <input type="hidden" name='rc' value='reloadCount'> -->
 
 
                 <div class='messages'>
