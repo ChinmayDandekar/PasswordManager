@@ -1,1 +1,1 @@
-web: gunicorn ehealthcare.wsgi
+web: gunicorn imagine-pass-manager.wsgi
