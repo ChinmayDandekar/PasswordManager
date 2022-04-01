@@ -79,25 +79,25 @@ WSGI_APPLICATION = 'djangoPractise.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoTest',
-        'USER': 'postgres',
-        'PASSWORD': 'Abcdk1234',
-        'HOST': 'localhost'
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd9al2h81s9kqes',
-#         'USER': 'fekndlhlnlgrtt',
-#         'PASSWORD': 'd1a7ccafd8a9244a8486ab9b2ce9aea3c543c2adca7b6fe63779abe461f471d9',
-#         'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com'
+#         'NAME': 'DjangoTest',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Abcdk1234',
+#         'HOST': 'localhost'
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9al2h81s9kqes',
+        'USER': 'fekndlhlnlgrtt',
+        'PASSWORD': 'd1a7ccafd8a9244a8486ab9b2ce9aea3c543c2adca7b6fe63779abe461f471d9',
+        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
