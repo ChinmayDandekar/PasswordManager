@@ -1,1 +1,1 @@
-web: gunicorn imagine-pass-manager.wsgi
+web: gunicorn djangoPractise.wsgi
