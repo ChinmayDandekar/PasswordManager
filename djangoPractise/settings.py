@@ -25,7 +25,8 @@ SECRET_KEY = 's*fy7mt!z+vyx9^#6^r$un*61u&8pbq)v-zogts@5&h*c#xr72'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.0.101","https://imagine-pass-manager.herokuapp.com/"]
+# ALLOWED_HOSTS = ["192.168.0.101","https://imagine-pass-manager.herokuapp.com/",'127.0.0.1']
+ALLOWED_HOSTS = ["https://imagine-pass-manager.herokuapp.com/"]
 
 
 # Application definition
