@@ -94,6 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd9al2h81s9kqes',
         'USER': 'fekndlhlnlgrtt',
+        'PORT': 5432,
         'PASSWORD': 'd1a7ccafd8a9244a8486ab9b2ce9aea3c543c2adca7b6fe63779abe461f471d9',
         'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com'
     }
