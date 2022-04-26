@@ -12,7 +12,8 @@ Its main functionalities are:
 
 <h3>Note:</h3>
   <p>The Passwords and Documents are stored in database so make sure to add your database in settings.py. <br>
-       Then run the commands:<br>
+       Then run the commands
+<br>
         <t>- python manage.py makemigrations<br>
-        <t>- python manage.py migrate<br>
+        <t>- python manage.py migrate <br>
    </p>
